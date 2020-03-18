@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccb98cb0-c09a-46cc-86e2-bf16cb4c23ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/github/mrlalonde/zipkinwebbridge/ReactorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/github/mrlalonde/zipkinwebbridge/TestingApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,7 +45,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestingApp">
+  <component name="RunManager" selected="Application.ZipkinWebBridgeApplication">
     <configuration name="TestingApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.github.mrlalonde.zipkinwebbridge.TestingApp" />
       <module name="zipkin-http-kafka" />
@@ -105,8 +104,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestingApp" />
         <item itemvalue="Application.ZipkinWebBridgeApplication" />
+        <item itemvalue="Application.TestingApp" />
         <item itemvalue="JUnit.ReactorTest" />
         <item itemvalue="JUnit.SpanTest" />
       </list>
@@ -141,7 +140,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java</url>
-          <line>35</line>
+          <line>38</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>

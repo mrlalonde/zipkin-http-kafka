@@ -1,6 +1,8 @@
 package com.github.mrlalonde.zipkinwebbridge;
 
 import org.reactivestreams.Publisher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.codec.Decoder;
 import org.springframework.core.codec.DecodingException;
@@ -14,8 +16,8 @@ import zipkin2.codec.SpanBytesDecoder;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
@@ -24,6 +26,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_OCTET_STREAM;
 
 final class SpanCodec implements Decoder<List<Span>> {
+    private static final Logger LOG = LoggerFactory.getLogger(SpanCodec.class);
 
     @Override
     public boolean canDecode(ResolvableType resolvableType, MimeType mimeType) {
@@ -48,9 +51,20 @@ final class SpanCodec implements Decoder<List<Span>> {
 
     @Override
     public List<Span> decode(DataBuffer buffer, ResolvableType targetType, MimeType mimeType, Map<String, Object> hints) throws DecodingException {
-        ByteBuffer byteBuffer = APPLICATION_OCTET_STREAM.equals(mimeType) ? gzipDecompress(buffer) : buffer.asByteBuffer();
-        List<Span> spans = SpanBytesDecoder.JSON_V2.decodeList(byteBuffer);
-        return spans;
+
+        try {
+            ByteBuffer byteBuffer = APPLICATION_OCTET_STREAM.equals(mimeType) ? gzipDecompress(buffer) :
+                    ByteBuffer.wrap(StreamUtils.copyToByteArray(buffer.asInputStream()));
+
+            // not sure if it was an issue - try using the DataBuffer directly without turning it to InputStream
+            LOG.trace("Decoding mime type {} and size {}", mimeType, byteBuffer.remaining());
+
+            return SpanBytesDecoder.JSON_V2.decodeList(byteBuffer);
+        } catch (IOException | IllegalArgumentException e) {
+
+            throw new DecodingException("Failed on decode " + buffer.toString(Charset.defaultCharset()), e);
+        }
+
     }
 
     ByteBuffer gzipDecompress(DataBuffer dataBuffer) {
