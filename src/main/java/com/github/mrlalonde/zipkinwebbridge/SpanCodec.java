@@ -1,12 +1,11 @@
 package com.github.mrlalonde.zipkinwebbridge;
 
 import org.reactivestreams.Publisher;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.codec.Decoder;
 import org.springframework.core.codec.DecodingException;
 import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.util.MimeType;
 import org.springframework.util.StreamUtils;
 import reactor.core.publisher.Flux;
@@ -16,7 +15,6 @@ import zipkin2.codec.SpanBytesDecoder;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -26,12 +24,15 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_OCTET_STREAM;
 
 final class SpanCodec implements Decoder<List<Span>> {
-    private static final Logger LOG = LoggerFactory.getLogger(SpanCodec.class);
+    private static final List<MimeType> DECODABLE_TYPES = Arrays.asList(APPLICATION_JSON, APPLICATION_OCTET_STREAM);
 
     @Override
     public boolean canDecode(ResolvableType resolvableType, MimeType mimeType) {
-        return resolvableType.getRawClass().equals(List.class)
-                && (mimeType.equals(APPLICATION_JSON) || mimeType.equals(APPLICATION_OCTET_STREAM));
+        return isSpanList(resolvableType) && DECODABLE_TYPES.contains(mimeType);
+    }
+
+    private boolean isSpanList(ResolvableType resolvableType) {
+        return resolvableType.getRawClass().equals(List.class);
     }
 
     @Override
@@ -41,33 +42,32 @@ final class SpanCodec implements Decoder<List<Span>> {
 
     @Override
     public Mono<List<Span>> decodeToMono(Publisher<DataBuffer> publisher, ResolvableType resolvableType, MimeType mimeType, Map<String, Object> map) {
-        return Mono.from(publisher).map(dataBuffer -> decode(dataBuffer, resolvableType, mimeType, map));
+        return DataBufferUtils.join(publisher).map(dataBuffer -> decode(dataBuffer, resolvableType, mimeType, map));
     }
 
     @Override
     public List<MimeType> getDecodableMimeTypes() {
-        return Arrays.asList(APPLICATION_JSON, APPLICATION_OCTET_STREAM);
+        return DECODABLE_TYPES;
     }
 
     @Override
-    public List<Span> decode(DataBuffer buffer, ResolvableType targetType, MimeType mimeType, Map<String, Object> hints) throws DecodingException {
-
+    public List<Span> decode(DataBuffer dataBuffer, ResolvableType targetType, MimeType mimeType, Map<String, Object> hints) throws DecodingException {
         try {
-            ByteBuffer byteBuffer = APPLICATION_OCTET_STREAM.equals(mimeType) ? gzipDecompress(buffer) :
-                    ByteBuffer.wrap(StreamUtils.copyToByteArray(buffer.asInputStream()));
-
-            // not sure if it was an issue - try using the DataBuffer directly without turning it to InputStream
-            LOG.trace("Decoding mime type {} and size {}", mimeType, byteBuffer.remaining());
+            ByteBuffer byteBuffer = isGzipped(mimeType) ?
+                    gunzip(dataBuffer) :
+                    dataBuffer.asByteBuffer();
 
             return SpanBytesDecoder.JSON_V2.decodeList(byteBuffer);
-        } catch (IOException | IllegalArgumentException e) {
-
-            throw new DecodingException("Failed on decode " + buffer.toString(Charset.defaultCharset()), e);
+        } finally {
+            DataBufferUtils.release(dataBuffer);
         }
-
     }
 
-    ByteBuffer gzipDecompress(DataBuffer dataBuffer) {
+    private boolean isGzipped(MimeType mimeType) {
+        return APPLICATION_OCTET_STREAM.equals(mimeType);
+    }
+
+    ByteBuffer gunzip(DataBuffer dataBuffer) {
         try (GZIPInputStream gzipInputStream = new GZIPInputStream(dataBuffer.asInputStream())) {
             return ByteBuffer.wrap(StreamUtils.copyToByteArray(gzipInputStream));
         } catch (IOException e) {

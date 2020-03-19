@@ -4,8 +4,8 @@
     <list default="true" id="ccb98cb0-c09a-46cc-86e2-bf16cb4c23ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/github/mrlalonde/zipkinwebbridge/ReactorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/github/mrlalonde/zipkinwebbridge/ReactorTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +27,8 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring-cloud-tracing-spike" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -105,8 +107,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ZipkinWebBridgeApplication" />
-        <item itemvalue="Application.TestingApp" />
         <item itemvalue="JUnit.ReactorTest" />
+        <item itemvalue="Application.TestingApp" />
         <item itemvalue="JUnit.SpanTest" />
       </list>
     </recent_temporary>
@@ -129,7 +131,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -140,7 +144,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java</url>
-          <line>38</line>
+          <line>39</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>

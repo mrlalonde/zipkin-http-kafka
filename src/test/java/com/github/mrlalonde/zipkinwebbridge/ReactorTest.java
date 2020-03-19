@@ -10,7 +10,7 @@ public class ReactorTest {
     @Test
     public void test() {
         Flux<String> flux = Flux.fromArray(new String[] {"a", "b"});
-        Mono<String> mono = Mono.from(flux);
-        assertEquals("a", mono.block());
+
+        assertEquals("ab",flux.reduce( (a,b) -> a+b).block());
     }
 }

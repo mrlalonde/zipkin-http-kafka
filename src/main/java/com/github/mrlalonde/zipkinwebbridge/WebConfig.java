@@ -11,7 +11,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 @EnableWebFlux
 public class WebConfig implements WebFluxConfigurer {
 
-
     @Override
     public void configureHttpMessageCodecs(ServerCodecConfigurer configurer) {
         configurer.defaultCodecs().jackson2JsonDecoder(new SpanCodec());
