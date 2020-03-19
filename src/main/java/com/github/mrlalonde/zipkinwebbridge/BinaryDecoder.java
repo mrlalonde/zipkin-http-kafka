@@ -10,8 +10,6 @@ import org.springframework.util.MimeType;
 import org.springframework.util.StreamUtils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import zipkin2.Span;
-import zipkin2.codec.SpanBytesDecoder;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -23,26 +21,12 @@ import java.util.zip.GZIPInputStream;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_OCTET_STREAM;
 
-final class SpanCodec implements Decoder<List<Span>> {
+public class BinaryDecoder implements Decoder<byte[]> {
     private static final List<MimeType> DECODABLE_TYPES = Arrays.asList(APPLICATION_JSON, APPLICATION_OCTET_STREAM);
 
     @Override
     public boolean canDecode(ResolvableType resolvableType, MimeType mimeType) {
-        return isSpanList(resolvableType) && DECODABLE_TYPES.contains(mimeType);
-    }
-
-    private boolean isSpanList(ResolvableType resolvableType) {
-        return resolvableType.getRawClass().equals(List.class);
-    }
-
-    @Override
-    public Flux<List<Span>> decode(Publisher<DataBuffer> publisher, ResolvableType resolvableType, MimeType mimeType, Map<String, Object> map) {
-        return Flux.from(publisher).map(dataBuffer -> decode(dataBuffer, resolvableType, mimeType, map));
-    }
-
-    @Override
-    public Mono<List<Span>> decodeToMono(Publisher<DataBuffer> publisher, ResolvableType resolvableType, MimeType mimeType, Map<String, Object> map) {
-        return DataBufferUtils.join(publisher).map(dataBuffer -> decode(dataBuffer, resolvableType, mimeType, map));
+        return resolvableType.getRawClass().equals(byte[].class) && DECODABLE_TYPES.contains(mimeType);
     }
 
     @Override
@@ -51,13 +35,21 @@ final class SpanCodec implements Decoder<List<Span>> {
     }
 
     @Override
-    public List<Span> decode(DataBuffer dataBuffer, ResolvableType targetType, MimeType mimeType, Map<String, Object> hints) throws DecodingException {
-        try {
-            ByteBuffer byteBuffer = isGzipped(mimeType) ?
-                    gunzip(dataBuffer) :
-                    dataBuffer.asByteBuffer();
+    public Flux<byte[]> decode(Publisher<DataBuffer> publisher, ResolvableType resolvableType, MimeType mimeType, Map<String, Object> map) {
+        return Flux.from(publisher).map(dataBuffer -> decode(dataBuffer, resolvableType, mimeType, map));
+    }
 
-            return SpanBytesDecoder.JSON_V2.decodeList(byteBuffer);
+    @Override
+    public Mono<byte[]> decodeToMono(Publisher<DataBuffer> publisher, ResolvableType resolvableType, MimeType mimeType, Map<String, Object> map) {
+        return DataBufferUtils.join(publisher).map(dataBuffer -> decode(dataBuffer, resolvableType, mimeType, map));
+    }
+
+    @Override
+    public byte[] decode(DataBuffer dataBuffer, ResolvableType targetType, MimeType mimeType, Map<String, Object> hints) throws DecodingException {
+        try {
+            return isGzipped(mimeType) ?
+                    gunzip(dataBuffer) :
+                    toByteArray(dataBuffer);
         } finally {
             DataBufferUtils.release(dataBuffer);
         }
@@ -67,11 +59,18 @@ final class SpanCodec implements Decoder<List<Span>> {
         return APPLICATION_OCTET_STREAM.equals(mimeType);
     }
 
-    ByteBuffer gunzip(DataBuffer dataBuffer) {
+    private byte[] gunzip(DataBuffer dataBuffer) {
         try (GZIPInputStream gzipInputStream = new GZIPInputStream(dataBuffer.asInputStream())) {
-            return ByteBuffer.wrap(StreamUtils.copyToByteArray(gzipInputStream));
+            return StreamUtils.copyToByteArray(gzipInputStream);
         } catch (IOException e) {
             throw new DecodingException("Couldn't unzip data", e);
         }
+    }
+
+    private byte[] toByteArray(DataBuffer dataBuffer) {
+        ByteBuffer byteBuffer = dataBuffer.asByteBuffer();
+        byte[] bytes = new byte[byteBuffer.remaining()];
+        byteBuffer.get(bytes);
+        return bytes;
     }
 }
