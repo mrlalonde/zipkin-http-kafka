@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ccb98cb0-c09a-46cc-86e2-bf16cb4c23ad" name="Default Changelist" comment="" />
+    <list default="true" id="ccb98cb0-c09a-46cc-86e2-bf16cb4c23ad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/github/mrlalonde/zipkinwebbridge/ReactorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/github/mrlalonde/zipkinwebbridge/ReactorTest.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +20,16 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1ZIihWplvOnGEJfcBFLR7VyxuDD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring-cloud-tracing-spike" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.github.mrlalonde.zipkinwebbridge" />
@@ -33,7 +47,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ZipkinWebBridgeApplication">
+    <configuration name="TestingApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.github.mrlalonde.zipkinwebbridge.TestingApp" />
+      <module name="zipkin-http-kafka" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.mrlalonde.zipkinwebbridge.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ZipkinWebBridgeApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.github.mrlalonde.zipkinwebbridge.ZipkinWebBridgeApplication" />
       <module name="zipkin-http-kafka" />
@@ -47,9 +74,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ReactorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="zipkin-http-kafka" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.mrlalonde.zipkinwebbridge.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.github.mrlalonde.zipkinwebbridge" />
+      <option name="MAIN_CLASS_NAME" value="com.github.mrlalonde.zipkinwebbridge.ReactorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpanTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="zipkin-http-kafka" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.mrlalonde.zipkinwebbridge.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.github.mrlalonde.zipkinwebbridge" />
+      <option name="MAIN_CLASS_NAME" value="com.github.mrlalonde.zipkinwebbridge.SpanTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ZipkinWebBridgeApplication" />
+        <item itemvalue="JUnit.ReactorTest" />
+        <item itemvalue="Application.TestingApp" />
+        <item itemvalue="JUnit.SpanTest" />
       </list>
     </recent_temporary>
   </component>
@@ -65,5 +125,37 @@
       <updated>1584533128452</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java</url>
+          <line>39</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/github/mrlalonde/zipkinwebbridge/TestingApp.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
