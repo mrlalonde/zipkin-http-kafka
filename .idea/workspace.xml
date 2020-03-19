@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccb98cb0-c09a-46cc-86e2-bf16cb4c23ad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/BinaryDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/BinaryDecoder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/github/mrlalonde/zipkinwebbridge/ReactorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/github/mrlalonde/zipkinwebbridge/ReactorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -142,14 +143,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java</url>
-          <line>39</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/github/mrlalonde/zipkinwebbridge/TestingApp.java</url>
           <line>18</line>
