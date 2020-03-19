@@ -21,7 +21,10 @@ import java.util.zip.GZIPInputStream;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_OCTET_STREAM;
 
-public class BinaryDecoder implements Decoder<byte[]> {
+/**
+ * Decoder that leaves JSON as is or decompresses GZIP if encountered.
+ */
+final class BinaryDecoder implements Decoder<byte[]> {
     private static final List<MimeType> DECODABLE_TYPES = Arrays.asList(APPLICATION_JSON, APPLICATION_OCTET_STREAM);
 
     @Override

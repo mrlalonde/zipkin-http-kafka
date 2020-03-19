@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccb98cb0-c09a-46cc-86e2-bf16cb4c23ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/SpanCodec.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/BinaryDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/BinaryDecoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/mrlalonde/zipkinwebbridge/ZipkinWebBridgeController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -11,18 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import zipkin2.Span;
-import zipkin2.codec.SpanBytesEncoder;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
 public class ZipkinWebBridgeController {
     private static final Logger LOG = LoggerFactory.getLogger(ZipkinWebBridgeController.class);
 
-    private String topic;
-    private KafkaTemplate<String, byte[]> kafkaTemplate;
+    private final String topic;
+    private final KafkaTemplate<String, byte[]> kafkaTemplate;
 
     ZipkinWebBridgeController(@Value("spans.topic") String topic, KafkaTemplate<String, byte[]> kafkaTemplate) {
         this.topic = topic;
