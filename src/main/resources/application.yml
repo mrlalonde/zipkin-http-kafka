@@ -1,10 +1,2 @@
 server:
-  port: 8080
-spans:
-  topic: spans
-spring:
-  kafka:
-    producer:
-      bootstrap-servers: 0.0.0.0:29092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+  port: 8082
